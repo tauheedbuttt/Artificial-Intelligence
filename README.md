@@ -1,8 +1,5 @@
 # Assignments and Lab Jorunals
 
-![License](https://img.shields.io/static/v1?label=license&message=Boost+Software+1.0&co
-lor=yellowgreen)
-
 This repository contains all the assignments, lab journals and projects I did for my co
 urse in Artificial Intelligence in my University. You can enter the Lab folder to view
 all the lab journals we performed in our lab sessions. In the Class folder you will fin
@@ -28,8 +25,6 @@ Run the files you wish to run and they will show you the instrunctions on how to
 em. If not then that program didnt require any user input to begin with.
 
 ## Author
-
-![ProfileImage](https://avatars.githubusercontent.com/u/74172268?v=4)
 
 Tauheed Butt
 
