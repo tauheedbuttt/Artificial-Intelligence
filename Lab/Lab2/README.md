@@ -2,8 +2,6 @@
 
 This lab's content reflect on the baiscs of python e.g. arthimetic, functions, classes etc.
 
-<hr />
-
 ## Table of Contents
 
 * [Task 1A](#task-1A)
