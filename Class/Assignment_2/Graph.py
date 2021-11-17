@@ -1,4 +1,4 @@
-from queue import LifoQueue
+from PriorityQueue import *
 class Node:
     def __init__(self, data, hn):
         self.data = data
@@ -64,6 +64,16 @@ class Graph:
                 self.df_s(n.data, goal, checked, dfs)
         return dfs
 
+    def greedy_bfs(self, goal):
+        visited = ['A']
+        node = 'A'
+        queue = PriorityQueue()
+        while node != goal:
+            for n in self.adj_list[node]:
+                queue.push(n)
+            node = queue.pop().data
+            visited.append(node)
+        return visited
 nodes = [
     Node('A', 6), Node('B', 7), Node('C', 9), Node('D', 7), Node('E', 5), Node('F', 3), Node('G', 1), Node('H', 4),
     Node('I', 9), Node('J', 6), Node('K', 3), Node('L', 7), Node('M', 1), Node('N', 2), Node('O', 1), Node('P', 5),
@@ -101,5 +111,6 @@ try:
     print(directed.dfs('S'))
 except ValueError as e:
     print(e)
+    print(f"Greedy BFS: {directed.greedy_bfs('S')}")
 
 
