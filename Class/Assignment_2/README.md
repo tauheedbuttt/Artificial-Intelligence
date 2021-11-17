@@ -4,9 +4,9 @@ This lab's content reflect on different Informed, Uninformed Searches. It also p
 
 ## Table of Contents
 
-* [Problem 1](#Problem 1)
+* [Problem 1](#Problem-1)
 
-* [Problem 2](#Problem 2)
+* [Problem 2](#Problem-2)
 
 <hr />
 
