@@ -2,12 +2,6 @@
 
 This lab's content reflect on different Informed, Uninformed Searches. It also puts a reflection on Genetic Algorithms
 
-## Table of Contents
-
-* [Problem 1](#Problem-1)
-
-* [Problem 2](#Problem-2)
-
 <hr />
 
 ## Problems
