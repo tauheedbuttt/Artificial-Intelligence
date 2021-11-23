@@ -9,13 +9,11 @@ This journal contains some tasks on Lists, Sets, Tuples and Numpy.
     * [1](#1)
     * [2](#2)
 
-* [Task 2B](#Task-2B)
-    * [1](#4)
-    * [2](#4)
+* [Task 3](#Task-3)
 
-* [Task 2C](#Task-2C)
+* [Task 4](#Task-4)
 
-* [Extra Tasks](#Extra-Tasks)
+* [Task 5](#Task-5)
 
 <hr />
 
@@ -33,26 +31,20 @@ This journal contains some tasks on Lists, Sets, Tuples and Numpy.
         Pig-Latin takes the first letter of a word, puts it at the end, and appends “ay”. The only exception is if the first letter is a vowel, in which case we keep it as it is and append “hay” to the end. For example: “hello” -> “ellohay”, and “image” -> “imagehay” 
         </blockquote>
 
-* ### **Task 2B**
-    * #### **1**
-        <blockquote>
-        Not Implemented Yet
-        </blockquote>
-    * #### **2**
-        <blockquote>
-        Not Implemented Yet
-        </blockquote>
-
-* ### **Task 2C**
+* ### **Task 3**
     <blockquote>
-    Not Implemented Yet
+    Find Minimum and maximum element's index from the series
     </blockquote>
 
-<hr />
+* ### **Task 4**
+    <blockquote>
+    Find Euclidean Distance using Pandas
+    </blockquote>
 
-## Extra Tasks
-
-    NONE RIGHT NOW
+* ### **Task 5**
+    <blockquote>
+    Create A Graph using the given Data
+    </blockquote>
 
 <hr />
 
