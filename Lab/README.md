@@ -9,6 +9,9 @@ You will find all the lab journals we did in our AI Course. What work was done i
 
 * ### Lab3 (Actually Lab 2)
         Sets, Tuples, Lists and Numpy
+        
+* ### Lab4
+        Graphs and Paths
 
 ## Projects
 
