@@ -18,7 +18,6 @@ for i in range(len(classes)):
     marker='o'
     if classes[i]=='b': 
         marker='x'
-    print(f'{classes[i]} {marker}')
     plt.scatter(feature1[i], feature2[i], marker=marker)
 
 plt.show()
