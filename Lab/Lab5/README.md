@@ -8,7 +8,6 @@ This journal contains some tasks on Uninformed searches in Python.
 * [Task 1](#Task-1)
 
 * [Task 2](#Task-2)
-* 
 <hr />
 
 ## Tasks
