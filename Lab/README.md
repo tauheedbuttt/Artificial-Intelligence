@@ -16,6 +16,9 @@ You will find all the lab journals we did in our AI Course. What work was done i
 * ### Lab4
         Graphs and Paths
 
+* ### Lab4
+        Uninformed Searches
+        
 ## Projects
 
 No project assigned or completed yet.
