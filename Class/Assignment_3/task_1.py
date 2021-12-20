@@ -1,132 +1,60 @@
 from numpy import linalg as LA
 import numpy as np
+import pandas as pd
 import random
-
-def print_table(table):
-    """
-
-    :param table: a 2D matrix
-    :return: none
-    """
-    for i in range(len(table[0])):
-        for j in range(len(table)):
-            print(f'{table[j][i]: 4.2f}', end='\t')
-        print()
+from sklearn.datasets import load_iris
 
 
-def print_list(List):
-    """
-    :param List: a 1D Matrix
-    :return:
-    """
-    for item in List:
-        print(f'{item: 4.2f}', end='\t')
-    print()
+# attributes = int(input('Enter Total Attributes: '))
+# samples = int(input('Enter Total Samples: '))
 
+attributes = 2
+samples = 10
 
-def get_means(table):
-    """
-    :param table: a 2D Matrix
-    :return: mean of all the attributes in a list
-    """
-    means = []
-    for row in table:
-        means.append(sum(row)/len(row))
-    return means
-
-
-def means_centered(table, means):
-    """
-    :param table: a 2D Matrix
-    :param means: mean of all the attributes in a list
-    :return: a list of attribute - their mean
-    """
-    centered = []
-    for i in range(len(table)):
-        centered.append([item-means[i] for item in table[i]])
-    return centered
-
-def cov(var1, var2):
-    """
-    :param var1: mean-centered values of attribtue 1
-    :param var2: mean-centered values of attribtue 2
-    :return: covariance of attribute 1 and attribute 2
-    """
-    prod = [var1[i]*var2[i] for i in range(len(var1))]
-    return (sum(prod)/(len(var1)-1))
-
-def get_cov_matrix(centered):
-    """
-    :param centered: the centered values (X - X')
-    :return: covarience matrix
-    """
-    attributes = len(centered)
-    cov_matrix = [[0 for i in range(attributes)] for i in range(attributes)]
-    for i in range(attributes):
-        for j in range(attributes):
-            cov_matrix[i][j] = cov(centered[i], centered[j])
-    return cov_matrix
-
-def dot_product(centered, eigen_vector):
-    """
-
-    :param centered: the centered values (X - X')
-    :param eigen_vector: eigen vector
-    :return: reduced values
-    """
-    reduced = []
-    for i in range(len(centered[0])):
-        set = [centered[j][i] for j in range(len(centered))]
-        reduced.append(np.dot(np.array(set), np.array(eigen_vector)))
-    return reduced
-
-
-attributes = int(input('Enter Total Attributes: '))
-samples = int(input('Enter Total Samples: '))
-
-# attributes = 6
-# samples = 10
+# Load Iris dataset
+# max attributes with iris = 4
+# table = load_iris().data[:samples, :attributes]
 
 # generating table
-table = list(np.random.randint(10, 50, attributes*samples).reshape(attributes, samples))
+table = np.random.randint(10, 50, attributes*samples).reshape(samples, attributes)
 
 # calculate mean
-means = get_means(table)
+means = np.mean(table, axis=0)
 
 # subtract mean from each attribute
-centered = means_centered(table, means)
+centered = table-means
 
-# add subtracted values in the table
-for item in centered:
-    table.append(item)
+print('-----------------------Original Data-----------------------')
+columns = [chr(i+1) for i in range(64, (attributes-1)+65)] #generates list of A,B,C...n
+print(pd.DataFrame(table, columns=columns).to_string(index=False))
+print(f'Means = {means}')
 
-print('-----------------------Table-----------------------')
-print(f" A\t\t B\t\t C\t\t D\t\t E\t\t F\t\t A-A'\t B-B'\t C-C'\t D-D'\t E-E'\t F-F'")
-print_table(table)
+
+print('----------------------- Mean-Centered Data -----------------------')
+columns = [f"{chr(i + 1)} - {chr(i + 1)}'" for i in range(64, (attributes-1)+65)] #generates list of A-A',B-B',C-C'...n
+print(pd.DataFrame(centered, columns=columns).to_string(index=False))
 
 # calculate covariance matrix
 print('-----------------------Covarience Matrix-----------------------')
-cov_matrix = get_cov_matrix(centered)
-print()
-print_table(cov_matrix)
+cov_matrix = np.cov(centered.T)
+print(pd.DataFrame(cov_matrix, columns=[' ' for i in range(attributes)]).to_string(index=False))
 print()
 
 print('-----------------------Eigen Values and Vectors-----------------------')
 # find eigen values and eigen vectors
 eigen_vals, eigen_vectors = LA.eig(np.array(cov_matrix))
-eigen_vals = sorted(eigen_vals,reverse=True)
+# sort eigen values and eigen vectors
+idx = eigen_vals.argsort()[::-1]
+eigen_vals = eigen_vals[idx]
+eigen_vectors = eigen_vectors[:,idx]
+#print them
 print(f'Eigen Values: {[f"{value: 4.2f}" for value in eigen_vals]}')
-print_table(eigen_vectors)
+print(pd.DataFrame(eigen_vectors, columns=[' ' for i in range(attributes)]).to_string(index=False))
 print()
 
-print('-----------------------Selected Eigen Vector-----------------------')
-# select an eigen vector subset (selecting randomly)
-P = random.randint(0, len(eigen_vectors)-1)
-eigen_vector = eigen_vectors[P]
-print_list(eigen_vector)
-
-
-print(f'-----------------------PCA USER DEFINED (PC{P+1})-----------------------')
+print(f'-----------------------[User-Defined] PCA -----------------------')
 # do dot product
-user_defined = dot_product(centered, eigen_vector)
-print_list(user_defined)
+user_defined = np.dot(eigen_vectors.T, centered.T).T
+
+columns = [chr(i) for i in range(97, attributes+97)] #generates list of a,b,c...n
+print(pd.DataFrame(user_defined, columns=columns).to_string(index=False))
