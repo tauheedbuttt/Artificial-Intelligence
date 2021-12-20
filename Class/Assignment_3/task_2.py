@@ -1,3 +1,5 @@
+import pandas as pd
+
 from task_1 import *
 import matplotlib.pyplot as plt
 
@@ -5,18 +7,19 @@ import numpy as np
 from sklearn.decomposition import PCA
 
 
-print(f'-----------------------PCA BUILT IN-----------------------')
-pca = PCA(n_components=samples)
-pca.fit(table)
-print('\t'.join([f'{item: 4.5f}' for item in pca.explained_variance_ratio_]))
+print(f'-----------------------[Built-In] PCA-----------------------')
+pca = PCA(n_components=attributes)
+built_in = pca.fit_transform(table)
 
-built_in = pca.explained_variance_ratio_
+print(pd.DataFrame(built_in, columns=columns).to_string(index=False))
+
 
 # display graph
 fig = plt.figure()
-sub1 = fig.add_subplot(221)
-sub2 = fig.add_subplot(222)
+sub1 = fig.add_subplot(211)
+sub2 = fig.add_subplot(212)
 
-sub1.scatter(user_defined, np.linspace(0, 0, samples))
-sub2.scatter(built_in, np.linspace(0, 0, samples))
+sub1.scatter(user_defined[:, 0], user_defined[:, 1])
+sub2.scatter(built_in[:, 0], built_in[:, 1])
+
 plt.show()
